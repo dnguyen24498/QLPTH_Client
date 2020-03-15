@@ -12,6 +12,20 @@ namespace ViewModel
         private static UCChatBoxViewModel _uCChatBoxViewModelStatic;
         private static UCMainControlViewModel _uCMainControlViewModelStatic;
         private static SettingWindowViewModel _settingWindowViewModelStatic;
+        private static UCTabMenuViewModel _uCTabMenuViewModelStatic;
+
+        public static UCTabMenuViewModel UCTabMenuViewModelStatic
+        {
+            get
+            {
+                if (_uCTabMenuViewModelStatic == null)
+                {
+                    _uCTabMenuViewModelStatic = new UCTabMenuViewModel();
+                }
+                return _uCTabMenuViewModelStatic;
+            }
+        }
+
         public static SettingWindowViewModel SettingWindowViewModelStatic
         {
             get

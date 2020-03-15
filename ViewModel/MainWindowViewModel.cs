@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using VMHelper;
-using Server;
+using Client;
 using GeneralClass;
 using Model;
 namespace ViewModel
@@ -62,11 +62,6 @@ namespace ViewModel
             }
         }
 
-        private void Instance_BroadcastNotification(object sender, GeneralClass.MessageArgs e)
-        {
-            GenerateNotification.ShowNoti("Thông báo mới", e.Content, Notifications.Wpf.NotificationType.Information);
-        }
-
         public MainWindowViewModel()
         {
             AreaName = "--";
@@ -74,28 +69,26 @@ namespace ViewModel
             ClassroomName = "--";
             ClassroomStatus = "--";
             LoadedWindowCommand = new RelayCommand<object>((p) => true, (p) => {
-                GenerateServer();
-                updateRoomInformationAsync();
+                Client.CustomClient.Instance.BroadcastNotification += Instance_BroadcastNotification;
+                getDataFromDatabaseAsync();
             });
             ClosedWindowCommand = new RelayCommand<object>((p) => true, (p) => {
-                Server.Server.Instance.Close();
             });
 
         }
 
-        private void GenerateServer()
+        private void Instance_BroadcastNotification(object sender, MessageArgs e)
         {
-            Server.Server.Instance.Start();
-            Server.Server.Instance.BroadcastNotification += Instance_BroadcastNotification;
+            GenerateNotification.ShowNoti("Thông báo mới", e.Content, Notifications.Wpf.NotificationType.Information);
         }
 
-        private async void updateRoomInformationAsync()
+        private async void getDataFromDatabaseAsync()
         {
             GenerateNotification.ShowNoti("Thông báo mới", "Đang kết nối tới máy chủ dữ liệu...", Notifications.Wpf.NotificationType.Information);
-            await Task.Run(() => getAndUpdateRoomInformationFromDB());
+            await Task.Run(() => getAndConnectToClassroomServer());
         }
 
-        private void getAndUpdateRoomInformationFromDB()
+        private void getAndConnectToClassroomServer()
         {
             try
             {
@@ -106,11 +99,12 @@ namespace ViewModel
                     FloorName = classroom.FloorOfArea.FloorName;
                     ClassroomName = classroom.ClassroomName;
                     ClassroomStatus = classroom.ClassroomStatus;
+                    Client.ManageSettings.IPServer = classroom.ClassroomServerIPV4Address;
+                    Client.ManageSettings.Port = (int)classroom.ClassroomPortNumber;
+
+                    Client.CustomClient.Instance.Connect();
+                    GenerateNotification.ShowNoti("Thông báo mới", "Đã kết nối với máy chủ dữ liệu và máy chủ phòng.", Notifications.Wpf.NotificationType.Information);
                 }
-                classroom.ClassroomServerIPV4Address = Server.ManageSettings.GetIPV4Server;
-                classroom.ClassroomPortNumber = Server.ManageSettings.Port;
-                DataProvider.Ins.DB.SaveChangesAsync();
-                GenerateNotification.ShowNoti("Thông báo mới", "Đã kết nối với máy chủ.", Notifications.Wpf.NotificationType.Information);
             }
             catch(Exception ex)
             {

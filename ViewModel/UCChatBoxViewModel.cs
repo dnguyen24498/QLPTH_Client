@@ -29,18 +29,11 @@ namespace ViewModel
         }
         public UCChatBoxViewModel()
         {
-            Server.Server.Instance.BroadcastMessage += Instance_BroadcastMessage;
+            Client.CustomClient.Instance.BroadcastMessage += Instance_BroadcastMessage;
             Converstation = new ObservableCollection<MessageArgs>();
-            SendMessageCommand = new RelayCommand<TextBox>((p) =>
+            SendMessageCommand = new RelayCommand<TextBox>((p)=>true, (p) =>
             {
-                if (!string.IsNullOrEmpty(p.Text) && !string.IsNullOrWhiteSpace(p.Text))
-                {
-                    return true;
-                }
-                return false;
-            }, (p) =>
-            {
-                Server.Server.Instance.SendMessage(p.Text);
+                Client.CustomClient.Instance.SendMessage(p.Text);
                 Converstation.Add(new MessageArgs(p.Text));
                 p.Clear();
                 p.Focus();
@@ -51,7 +44,7 @@ namespace ViewModel
                   dia.RestoreDirectory = true;
                   dia.Title = "Chọn tập tin đính kèm";
                   if (dia.ShowDialog() == true)
-                      Server.Server.Instance.SendFile(dia.FileName);
+                      Client.CustomClient.Instance.SendFile(dia.FileName);
               });
         }
 

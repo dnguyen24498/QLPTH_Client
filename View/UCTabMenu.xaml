@@ -6,7 +6,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View"
              BorderBrush="Transparent" BorderThickness="0"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel"
+             DataContext="{Binding Source={x:Static ViewModel:ViewModelLocator.UCTabMenuViewModelStatic}}"
              mc:Ignorable="d" 
              d:DesignHeight="594" d:DesignWidth="220">
     <TabControl Background="White" BorderThickness="0" Width="220">
@@ -43,10 +45,14 @@
             </Style>
         </TabControl.Resources>
         <TabItem  Header="Máy khách">
-            
             <local:UCThongTinMayKhach></local:UCThongTinMayKhach>
         </TabItem>
-        <TabItem  Header="Tin nhắn">
+        <TabItem Header="{Binding MessageTabHeader}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="GotFocus">
+                    <i:InvokeCommandAction Command="{Binding FocusMessageTabCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <local:UCChatBox></local:UCChatBox>
         </TabItem>
     </TabControl>

@@ -9,7 +9,7 @@
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel"
         Name="WindowSettingsView"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        DataContext="{Binding Source={x:Static ViewModel:ViewModelLocator.SettingWindowViewModelStatic}}"
+        
         Title="Cài đặt" Height="320" Width="520" ResizeMode="NoResize">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

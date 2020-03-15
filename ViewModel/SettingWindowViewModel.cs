@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VMHelper;
-using Server;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
@@ -143,10 +142,10 @@ namespace ViewModel
 
         private void UpdateNewSettings()
         {
-            Server.ManageSettings.PathSaveFile = PathSaveFile;
-            Server.ManageSettings.MaxFileSize = MaxFileSize;
-            Server.ManageSettings.AcceptReceiveFile = AcceptReceiveFile;
-            Server.ManageSettings.DeleteAllFileWhenClose = DeleteAllFileWhenClose;
+            //Server.ManageSettings.PathSaveFile = PathSaveFile;
+            //Server.ManageSettings.MaxFileSize = MaxFileSize;
+            //Server.ManageSettings.AcceptReceiveFile = AcceptReceiveFile;
+            //Server.ManageSettings.DeleteAllFileWhenClose = DeleteAllFileWhenClose;
 
             ManageSettings.Notification = Notification;
             ManageSettings.NotificationSound = NotificationSound;
@@ -154,13 +153,13 @@ namespace ViewModel
 
         private void GetSettings()
         {
-            Port = Server.ManageSettings.Port;
-            PathSaveFile = Server.ManageSettings.PathSaveFile;
-            MaxFileSize = Server.ManageSettings.MaxFileSize;
-            AcceptReceiveFile = Server.ManageSettings.AcceptReceiveFile;
-            DeleteAllFileWhenClose = Server.ManageSettings.DeleteAllFileWhenClose;
-            IPAddress = Server.ManageSettings.GetIPV4Server;
-            ClassroomID = ManageSettings.RoomID;
+            //Port = Server.ManageSettings.Port;
+            //PathSaveFile = Server.ManageSettings.PathSaveFile;
+            //MaxFileSize = Server.ManageSettings.MaxFileSize;
+            //AcceptReceiveFile = Server.ManageSettings.AcceptReceiveFile;
+            //DeleteAllFileWhenClose = Server.ManageSettings.DeleteAllFileWhenClose;
+            //IPAddress = Server.ManageSettings.GetIPV4Server;
+            //ClassroomID = ManageSettings.RoomID;
 
             Notification = ManageSettings.Notification;
             NotificationSound = ManageSettings.NotificationSound;
