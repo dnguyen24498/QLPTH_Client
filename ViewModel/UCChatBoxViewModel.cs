@@ -33,8 +33,11 @@ namespace ViewModel
             Converstation = new ObservableCollection<MessageArgs>();
             SendMessageCommand = new RelayCommand<TextBox>((p)=>true, (p) =>
             {
-                Client.CustomClient.Instance.SendMessage(p.Text);
-                Converstation.Add(new MessageArgs(p.Text));
+                if (!string.IsNullOrEmpty(p.Text) && !string.IsNullOrWhiteSpace(p.Text))
+                {
+                    Client.CustomClient.Instance.SendMessage(p.Text);
+                    Converstation.Add(new MessageArgs(p.Text));
+                }
                 p.Clear();
                 p.Focus();
             });
