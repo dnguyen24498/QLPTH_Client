@@ -35,7 +35,8 @@
     <Reference Include="BaseViewModel">
       <HintPath>..\..\..\My Solution\DLL\BaseViewModel\BaseViewModel\bin\Debug\BaseViewModel.dll</HintPath>
     </Reference>
-    <Reference Include="Client">
+    <Reference Include="Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SocketConnectionBase\Client\bin\Debug\Client.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -44,8 +45,13 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="GeneralClass">
-      <HintPath>..\..\SocketConnection_V01\Server\bin\Debug\GeneralClass.dll</HintPath>
+    <Reference Include="GeneralClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SocketConnectionBase\Client\bin\Debug\GeneralClass.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SocketConnectionBase\Client\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Notifications.Wpf.0.1.1\lib\net461\Notifications.Wpf.dll</HintPath>

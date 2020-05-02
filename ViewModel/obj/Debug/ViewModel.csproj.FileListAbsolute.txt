@@ -72,3 +72,7 @@ D:\Github\QLPTH_Client\ViewModel\obj\Debug\ViewModel.csprojAssemblyReference.cac
 D:\Github\QLPTH_Client\ViewModel\obj\Debug\ViewModel.csproj.CopyComplete
 D:\Github\QLPTH_Client\ViewModel\obj\Debug\ViewModel.dll
 D:\Github\QLPTH_Client\ViewModel\obj\Debug\ViewModel.pdb
+D:\Github\QLPTH_Client\ViewModel\bin\Debug\Newtonsoft.Json.dll
+D:\Github\QLPTH_Client\ViewModel\bin\Debug\Newtonsoft.Json.xml
+D:\Github\QLPTH_Client\ViewModel\bin\Debug\GeneralClass.dll
+D:\Github\QLPTH_Client\ViewModel\bin\Debug\GeneralClass.pdb

@@ -7,9 +7,9 @@
         mc:Ignorable="d" Topmost="True" WindowStartupLocation="CenterScreen"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel"
-        Name="WindowSettingsView"
+        Name="WindowSettingsView" WindowStyle="None"
+        DataContext="{Binding Source={x:Static ViewModel:ViewModelLocator.SettingWindowViewModelStatic}}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
         Title="Cài đặt" Height="320" Width="520" ResizeMode="NoResize">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -176,15 +176,7 @@
                                         <ColumnDefinition Width="0.4*"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Kích thước file tối đa:"></TextBlock>
-                                    <StackPanel Orientation="Horizontal" Grid.Column="1">
-                                        <TextBox Width="50"  Text="{Binding MaxFileSize,Mode=TwoWay}"
-                                             Style="{x:Null}" HorizontalAlignment="Left"></TextBox>
-                                        <TextBlock Text="MB" Margin="3 0 0 0"></TextBlock>
-                                    </StackPanel>
                                 </Grid>
-                                <CheckBox Margin="0 10 0 0" IsChecked="{Binding AcceptReceiveFile,Mode=TwoWay}"
-                                          Content="Nhận file từ máy khách"></CheckBox>
                                 <CheckBox Margin="0 10 0 10" IsChecked="{Binding DeleteAllFileWhenClose,Mode=TwoWay}"
                                           Content="Xóa toàn bộ file đã nhận khi tắt chương trình"></CheckBox>
                             </StackPanel>
@@ -192,6 +184,10 @@
                     </ListBoxItem>
                 </ListBox>
                 <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                     <Grid.Resources>
                         <Style TargetType="Button" >
                             <Setter Property="Margin" Value="0"></Setter>
@@ -217,6 +213,7 @@
                         </Style>
                     </Grid.Resources>
                     <Button Content="Lưu" Command="{Binding SaveSettingsCommand}" CommandParameter="{Binding ElementName=WindowSettingsView}"></Button>
+                    <Button Grid.Column="1" Content="Hủy" Command="{Binding CancelSettingsCommand}" CommandParameter="{Binding ElementName=WindowSettingsView}"></Button>
                 </Grid>
             </Grid>
         </Grid>

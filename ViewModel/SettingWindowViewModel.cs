@@ -19,6 +19,8 @@ namespace ViewModel
         public ICommand LoadedWindowCommand { get; set; }
         public ICommand SaveSettingsCommand { get; set; }
 
+        public ICommand CancelSettingsCommand { get; set; }
+
         private string _classroomID;
         public string ClassroomID
         {
@@ -138,14 +140,16 @@ namespace ViewModel
                   UpdateNewSettings();
                   p.Close();
               });
+            CancelSettingsCommand = new RelayCommand<Window>((p) => true, (p) =>
+                 {
+                     p.Close();
+                 });
         }
 
         private void UpdateNewSettings()
         {
-            //Server.ManageSettings.PathSaveFile = PathSaveFile;
-            //Server.ManageSettings.MaxFileSize = MaxFileSize;
-            //Server.ManageSettings.AcceptReceiveFile = AcceptReceiveFile;
-            //Server.ManageSettings.DeleteAllFileWhenClose = DeleteAllFileWhenClose;
+            Client.ManageSettings.PathSaveFile = PathSaveFile;
+            Client.ManageSettings.DeleteAllFileWhenClose = DeleteAllFileWhenClose;
 
             ManageSettings.Notification = Notification;
             ManageSettings.NotificationSound = NotificationSound;
@@ -153,13 +157,11 @@ namespace ViewModel
 
         private void GetSettings()
         {
-            //Port = Server.ManageSettings.Port;
-            //PathSaveFile = Server.ManageSettings.PathSaveFile;
-            //MaxFileSize = Server.ManageSettings.MaxFileSize;
-            //AcceptReceiveFile = Server.ManageSettings.AcceptReceiveFile;
-            //DeleteAllFileWhenClose = Server.ManageSettings.DeleteAllFileWhenClose;
-            //IPAddress = Server.ManageSettings.GetIPV4Server;
-            //ClassroomID = ManageSettings.RoomID;
+            Port = Client.ManageSettings.Port;
+            PathSaveFile = Client.ManageSettings.PathSaveFile;
+            DeleteAllFileWhenClose = Client.ManageSettings.DeleteAllFileWhenClose;
+            IPAddress = Client.ManageSettings.IPServer;
+            ClassroomID = ManageSettings.RoomID;
 
             Notification = ManageSettings.Notification;
             NotificationSound = ManageSettings.NotificationSound;

@@ -252,3 +252,6 @@ D:\Github\QLPTH_Client\View\obj\Debug\View.pdb
 D:\Github\QLPTH_Client\View\bin\Debug\View.exe.config
 D:\Github\QLPTH_Client\View\bin\Debug\View.pdb
 D:\Github\QLPTH_Client\View\obj\Debug\View.csproj.CopyComplete
+D:\Github\QLPTH_Client\View\bin\Debug\Newtonsoft.Json.dll
+D:\Github\QLPTH_Client\View\bin\Debug\Newtonsoft.Json.xml
+D:\Github\QLPTH_Client\View\bin\Debug\GeneralClass.pdb

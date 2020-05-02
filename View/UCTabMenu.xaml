@@ -44,7 +44,7 @@
                 </Setter>
             </Style>
         </TabControl.Resources>
-        <TabItem  Header="Máy khách">
+        <TabItem  Header="Thông tin máy">
             <local:UCThongTinMayKhach></local:UCThongTinMayKhach>
         </TabItem>
         <TabItem Header="{Binding MessageTabHeader}">

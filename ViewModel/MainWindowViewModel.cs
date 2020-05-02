@@ -73,6 +73,10 @@ namespace ViewModel
                 getDataFromDatabaseAsync();
             });
             ClosedWindowCommand = new RelayCommand<object>((p) => true, (p) => {
+                if (Client.ManageSettings.DeleteAllFileWhenClose)
+                {
+                    Client.CustomClient.Instance.DeleteAllFileReceived();
+                }
             });
 
         }

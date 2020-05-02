@@ -6,125 +6,116 @@
              xmlns:local="clr-namespace:View"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ViewModel="clr-namespace:ViewModel;assembly=ViewModel"
+             DataContext="{Binding Source={x:Static ViewModel:ViewModelLocator.UCClientInforViewModelStatic}}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="564" d:DesignWidth="220">
+    
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0 3 0 0"
-                    Height="30" VerticalAlignment="Top" Background="White">
-            <materialDesign:PackIcon Kind="ComputerClassic" Height="18" Width="18" Foreground="Black"
-                                     VerticalAlignment="Center" Margin="5"></materialDesign:PackIcon>
-            <TextBlock Text="Số máy đang kết nối:" Foreground="Black"
-                       VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="{Binding NumbClientOnline}" Margin="5 0 0 0" FontWeight="DemiBold" Foreground="Black"
-                       VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text=" / " Margin="0 0 0 0" FontWeight="DemiBold" Foreground="Black"
-                       VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="{Binding TotalClient}" Margin="0 0 0 0" FontWeight="DemiBold" Foreground="Black"
-                       VerticalAlignment="Center"></TextBlock>
-        </StackPanel>
-        <ListBox Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                 SelectedItem="{Binding SelectedClient}" Name="listBoxClients"
-                 BorderThickness="0" BorderBrush="Transparent" 
-                 ItemsSource="{Binding ListClient}" SelectionMode="Multiple"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.Resources>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="Height" Value="35"></Setter>
-                    <Setter Property="BorderThickness" Value="0.1"></Setter>
-                    <Setter Property="Foreground" Value="White"></Setter>
-                    <Setter Property="BorderBrush" Value="White"></Setter>
-                    <Setter Property="Background" Value="White"></Setter>
-                </Style>
-            </ListBox.Resources>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Width="195">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Computer" Foreground="Green"
-                                             Height="24" Width="24"
-                                             ></materialDesign:PackIcon>
-                            <TextBlock VerticalAlignment="Center" Margin="10 0 0 0"
-                               FontSize="14"  Foreground="Black"
-                               Text="{Binding MachineName}"></TextBlock>
-                        </StackPanel>
-                        <materialDesign:PackIcon Kind="Circle" Height="10" Width="10" HorizontalAlignment="Right" Margin="0 0 5 0"
-                                             VerticalAlignment="Center" Foreground="Green"></materialDesign:PackIcon>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Grid Background="#F5F8FA" Grid.Row="2">
-            <StackPanel VerticalAlignment="Bottom"  HorizontalAlignment="Center"
-                    Height="30" Orientation="Horizontal">
-                <StackPanel.Resources>
-                    <Style TargetType="materialDesign:PackIcon">
-                        <Setter Property="Height" Value="12"></Setter>
-                        <Setter Property="Width" Value="12"></Setter>
-                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                        <Setter Property="Margin" Value="5 0 3 0"></Setter>
-                    </Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                        <Setter Property="Margin" Value="5 0 3 0"></Setter>
-                        <Setter Property="FontSize" Value="11"></Setter>
-                    </Style>
-                </StackPanel.Resources>
-                <materialDesign:PackIcon Kind="Circle" Foreground="#1AA15F"></materialDesign:PackIcon>
-                <TextBlock Text="Online" Foreground="Black"></TextBlock>
-                <materialDesign:PackIcon Kind="Circle" Foreground="#C3C4C2"></materialDesign:PackIcon>
-                <TextBlock Text="Offline" Foreground="Black"></TextBlock>
-                <materialDesign:PackIcon Kind="Circle" Foreground="#DD5044"></materialDesign:PackIcon>
-                <TextBlock Text="Sự cố" Foreground="Black"></TextBlock>
-            </StackPanel>
-        </Grid>
-        <StackPanel Grid.Row="3" Background="#F5F8FA"
-                    DockPanel.Dock="Bottom" Height="100" VerticalAlignment="Bottom">
-            <StackPanel>
-                <TextBlock Text="Chọn hành động:" Margin="5 5 0 0" Foreground="Black"></TextBlock>
-                <ComboBox Name="cbActionCommand" Style="{x:Null}" FontSize="14"
-                          SelectedIndex="{Binding SelectedIndexCombobox}"
-                          VerticalContentAlignment="Center"
-                          Margin="5 5 5 10" Height="30">
-                    <ComboBoxItem Content="Tắt máy"></ComboBoxItem>
-                    <ComboBoxItem Content="Khởi động"></ComboBoxItem>
-                    <ComboBoxItem Content="Ngủ"></ComboBoxItem>
-                    <ComboBoxItem Content="Ngủ đông"></ComboBoxItem>
-                    <ComboBoxItem Content="Khóa"></ComboBoxItem>
-                    <ComboBoxItem Content="Đăng xuất"></ComboBoxItem>
-                    <ComboBoxItem Content="Xem màn hình"></ComboBoxItem>
-                </ComboBox>
+        <GroupBox  Margin="5" Height="270" VerticalAlignment="Top">
+            <GroupBox.Header>
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel.Resources>
-                        <Style TargetType="Button">
-                            <Setter Property="Foreground" Value="White"></Setter>
-                            <Setter Property="Margin" Value="5 0 0 0"></Setter>
-                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                            <Setter Property="Padding" Value="3"></Setter>
-                            <Setter Property="Background" Value="#006EE8"></Setter>
-                            <Setter Property="FontWeight" Value="Normal"></Setter>
-                            <Setter Property="Height" Value="30"></Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Resources>
-                    <Button Width="142" Command="{Binding ActionCommand}"
-                            CommandParameter="{Binding ElementName=listBoxClients}"
-                        Content="Thực hiện">
-                    </Button>
-                    <Button Content="Hủy"
-                            Width="60" Margin="3 0 0 0"></Button>
+                    <materialDesign:PackIcon Kind="Person"
+                                             Foreground="White"></materialDesign:PackIcon>
+                    <TextBlock Text="Thông tin tài khoản" Foreground="White" Margin="5 0 0 0"></TextBlock>
                 </StackPanel>
+            </GroupBox.Header>
+                <StackPanel>
+                    <Grid>
+                        <Border>
+                            <Image Source="Images/student.png" Height="95" Width="95"></Image>
+                        </Border>
+                    </Grid>
+                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" Text="Thay đổi ảnh đại diện"
+                               Foreground="Blue" Cursor="Hand"></TextBlock>
+                    <Grid Margin="0 15 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="MSV:"></TextBlock>
+                        <TextBlock Text="68973" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+                    <Grid Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Sinh viên:"></TextBlock>
+                        <TextBlock Text="Phạm Công Thành" 
+                                   Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+                    <Grid Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Lớp:"></TextBlock>
+                        <TextBlock Text="Công nghệ phần mềm" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+                    <Grid Margin="0 5 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Khoa:"></TextBlock>
+                        <TextBlock Text="Công nghệ thông tin" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+        <GroupBox Height="275" Margin="5"
+                  VerticalAlignment="Bottom">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ComputerClassic"
+                                             Foreground="White"></materialDesign:PackIcon>
+                    <TextBlock Text="Thông tin máy khách" Foreground="White" Margin="5 0 0 0"></TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <StackPanel>
+                <Grid Margin="0 5 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Tên máy:"></TextBlock>
+                    <TextBlock Text="{Binding MachineName}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <Grid Margin="0 5 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Tình trạng:"></TextBlock>
+                    <TextBlock Text="{Binding MachineStatus}" Grid.Column="1" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+                <TextBlock Text="{Binding ControlProcessStatus}" Margin="0 5 0 5"></TextBlock>
+                <DataGrid AlternatingRowBackground="WhiteSmoke" HeadersVisibility="None" 
+                          ItemsSource="{Binding ListProcess}" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          BorderThickness="0"
+                          GridLinesVisibility="None" Padding="0" 
+                          Background="White" HorizontalAlignment="Stretch" Height="134" 
+                          Margin="0,0,0,0" AutoGenerateColumns="False" 
+                          CanUserAddRows="false" VerticalAlignment="Stretch" Width="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <materialDesign:PackIcon Kind="{Binding Path=ProcessIcon}" VerticalAlignment="Center" Margin="3 0 0 0"
+                                                             Foreground="{Binding Path=IconForeground}"></materialDesign:PackIcon>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=ProcessName}" VerticalAlignment="Center" Margin="3 0 0 0"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-        </StackPanel>
+        </GroupBox>
     </Grid>
 </UserControl>
