@@ -11,5 +11,8 @@
     <Setting Name="ClassroomID" Type="System.String" Scope="User">
       <Value Profile="(Default)">A4-3-320</Value>
     </Setting>
+    <Setting Name="ControlProcessStatus" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

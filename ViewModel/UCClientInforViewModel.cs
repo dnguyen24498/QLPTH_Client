@@ -62,28 +62,33 @@ namespace ViewModel
         {
             MachineName = Environment.MachineName;
             MachineStatus = "Khả dụng";
+            ControlProcessStatus = Properties.Settings.Default.ControlProcessStatus;
             Client.CustomClient.Instance.BroadcastOpenOnlyProcess += Instance_BroadcastOpenOnlyProcess;
             Client.CustomClient.Instance.BroadcastProhibitProcess += Instance_BroadcastProhibitProcess;
             Client.CustomClient.Instance.BroadcastDisableControl += Instance_BroadcastDisableControl;
-            ListProcess = Client.ManageSettings.GetListSettingProcess() ?? null;
+            ListProcess = new ObservableCollection<SettingProcessArgs>(Client.ManageSettings.GetListSettingProcess()
+                .Where(x => !x.ProcessName.ToLower().Contains("clientmanagement") && !x.ProcessName.ToLower().Contains("servermanagement"))) ?? null;
         }
 
         private void Instance_BroadcastDisableControl(object sender, EventArgs e)
         {
-            ControlProcessStatus = "Không có tiến trình nào bị cấm:";
+            Properties.Settings.Default.ControlProcessStatus=ControlProcessStatus = "Không có tiến trình nào bị cấm:";
+            Properties.Settings.Default.Save();
             ListProcess = new ObservableCollection<SettingProcessArgs>();
         }
 
         private void Instance_BroadcastProhibitProcess(object sender, ObservableCollection<SettingProcessArgs> e)
         {
-            ControlProcessStatus = "Các tiến trình bị cấm:";
-            ListProcess = e;
+            Properties.Settings.Default.ControlProcessStatus = ControlProcessStatus = "Các tiến trình bị cấm:";
+            Properties.Settings.Default.Save();
+            ListProcess =new ObservableCollection<SettingProcessArgs>(e.Where(x=>!x.ProcessName.ToLower().Contains("clientmanagement") && !x.ProcessName.ToLower().Contains("servermanagement")));
         }
 
         private void Instance_BroadcastOpenOnlyProcess(object sender, ObservableCollection<SettingProcessArgs> e)
         {
-            ControlProcessStatus = "Chỉ được phép mở";
-            ListProcess = e;
+            Properties.Settings.Default.ControlProcessStatus = ControlProcessStatus = "Chỉ được phép mở";
+            Properties.Settings.Default.Save();
+            ListProcess = ListProcess = new ObservableCollection<SettingProcessArgs>(e.Where(x => !x.ProcessName.ToLower().Contains("clientmanagement") && !x.ProcessName.ToLower().Contains("servermanagement")));
         }
     }
 }

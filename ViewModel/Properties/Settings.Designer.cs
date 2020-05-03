@@ -58,5 +58,17 @@ namespace ViewModel.Properties {
                 this["ClassroomID"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ControlProcessStatus {
+            get {
+                return ((string)(this["ControlProcessStatus"]));
+            }
+            set {
+                this["ControlProcessStatus"] = value;
+            }
+        }
     }
 }

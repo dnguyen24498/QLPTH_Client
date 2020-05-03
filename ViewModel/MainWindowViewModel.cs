@@ -11,6 +11,8 @@ using VMHelper;
 using Client;
 using GeneralClass;
 using Model;
+using System.Reflection;
+
 namespace ViewModel
 {
     public class MainWindowViewModel:BaseViewModel
@@ -68,9 +70,9 @@ namespace ViewModel
             FloorName = "--";
             ClassroomName = "--";
             ClassroomStatus = "--";
-            LoadedWindowCommand = new RelayCommand<object>((p) => true, (p) => {
+            LoadedWindowCommand = new RelayCommand<Grid>((p) => true, (p) => {
                 Client.CustomClient.Instance.BroadcastNotification += Instance_BroadcastNotification;
-                getDataFromDatabaseAsync();
+                getDataFromDatabaseAsync(p);
             });
             ClosedWindowCommand = new RelayCommand<object>((p) => true, (p) => {
                 if (Client.ManageSettings.DeleteAllFileWhenClose)
@@ -86,10 +88,12 @@ namespace ViewModel
             GenerateNotification.ShowNoti("Thông báo mới", e.Content, Notifications.Wpf.NotificationType.Information);
         }
 
-        private async void getDataFromDatabaseAsync()
+        private async void getDataFromDatabaseAsync(Grid p)
         {
+            p.Visibility = Visibility.Visible;
             GenerateNotification.ShowNoti("Thông báo mới", "Đang kết nối tới máy chủ dữ liệu...", Notifications.Wpf.NotificationType.Information);
             await Task.Run(() => getAndConnectToClassroomServer());
+            p.Visibility = Visibility.Hidden;
         }
 
         private void getAndConnectToClassroomServer()

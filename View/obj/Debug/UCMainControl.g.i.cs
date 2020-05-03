@@ -65,7 +65,7 @@ namespace View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/View;component/ucmaincontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ClientManagement;component/ucmaincontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\UCMainControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
